@@ -1,0 +1,8 @@
+{
+  "extends": ["@commitlint/config-conventional"],
+  "rules": {
+    "header-max-length": [0, "always", 90],
+    "type-enum": [2, "always", ["feat", "fix", "hotfix", "docs", "style", "refactor", "perf", "test", "chore"]],
+    "subject-full-stop": [0]
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "name": "git-changelog-with-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "ts-node ./src/index.ts",
+    "clean": "rimraf build/*",
+    "compile": "tsc -p .",
+    "format:fix": "pretty-quick --staged",
+    "lint": "run-s lint:src lint:test",
+    "lint:src": "tslint -c tslint.json 'src/**/*.ts'",
+    "lint:test": "tslint -c tslint.json 'test/**/*.ts'",
+    "prepare": "npm run compile",
+    "pretest": "npm run compile",
+    "release": "standard-version --no-verify",
+    "reinstall": "rm -rf node_modules/ && npm install"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.924.0",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.2"
+  },
+  "devDependencies": {
+    "@aws-sdk/types": "^3.18.0",
+    "@types/node": "^15.12.2",
+    "aws-cognito-cli": "^1.0.9",
+    "fast-xml-parser": "^3.19.0",
+    "husky": "^7.0.4",
+    "moment": "^2.29.1",
+    "npm-install-missing": "^0.1.4",
+    "pg": "^8.6.0",
+    "standard-version": "^9.3.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "run-s format:fix lint test",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "standard-version": {
+    "types": [
+      {
+        "type": "feat",
+        "section": "Features"
+      },
+      {
+        "type": "fix",
+        "section": "Bug Fixes"
+      },
+      {
+        "type": "chore",
+        "section": "Chores"
+      },
+      {
+        "type": "docs",
+        "section": "Docs"
+      },
+      {
+        "type": "style",
+        "section": "Styles"
+      },
+      {
+        "type": "refactor",
+        "section": "Refactors"
+      },
+      {
+        "type": "perf",
+        "section": "Performances"
+      },
+      {
+        "type": "test",
+        "section": "Tests"
+      },
+      {
+        "type": "hotfix",
+        "section": "Hotfixes"
+      }
+    ]
+  }
+}
